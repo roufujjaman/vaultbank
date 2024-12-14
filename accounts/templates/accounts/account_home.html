@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+
+{% block title %}Account{% endblock %}
+{% block subtitle %}{{ user.first_name }} {{ user.last_name }}{% endblock %}
+
+
+{% block content %}
+  <p>Account No: <strong>{{ user.account.account_no }}</strong></p>
+  <p>Account Type: <strong>{{ user.account.account_type | upper }}</strong></p>
+  <p>Account Created: <strong>{{ user.account.activation_date }}</strong></p>
+  <p>Balance: <strong>{{ user.account.balance }}</strong></p>
+
+  <br>
+  <strong>Transaction History</strong>
+    <br>
+    <div style="height: 20rem; overflow-y: scroll;">
+      <table>
+        <tr class="txn-heading">
+          <th>Type</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Balance</th>
+        </tr>
+        {% for t in transactions %}
+            <tr>
+              <!-- TRANSACTION_TYPE
+              (1, 'Deposit'),
+              (2, 'Withdrawal'),
+              (3, 'Loan'),
+              (4, 'Payment'),
+              (5, 'Received'),
+              (6, 'Sent') -->
+              {% if t.txn_type == 1 %}
+              <td class="txn-type">
+                <div class="txn deposit"></div>Deposit
+              </td>
+              {% elif t.txn_type == 2 %}
+              <td class="txn-type">
+                <div class="txn withdraw"></div>Withdraw
+              </td>
+              {% elif t.txn_type == 3 %}
+              <td class="txn-type">
+                <div class="txn other"></div>Loan
+              </td>
+              {% elif t.txn_type == 4 %}
+              <td class="txn-type">
+                <div class="txn other"></div>Payment
+              </td>
+              {% elif t.txn_type == 5 %}
+              <td class="txn-type">
+                <div class="txn other"></div>Received
+              </td>
+              {% elif t.txn_type == 6 %}
+              <td class="txn-type">
+                <div class="txn other"></div>Sent
+              </td>
+              {% endif %}
+              <td>{{ t.created_at | date:"Y F d, fA"}}</td>
+              <td>৳ {{ t.amount }}</td>
+              <td>৳ {{ t.balance_post_txn }}</td>
+            </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <a href="/account/?txn_type=loan-pending">Show Pending Loans</a>
+  <form action="" method="GET" class="txn-filter">
+    <input type="date" name="start_date">
+    <p style="display: inline-block;">TO</p>
+    <input type="date" name="end_date">
+    <input type="number" name="list_length" placeholder="# of Transactions">
+    <button>Filer</button>
+  </form>
+
+  <br>
+
+  <address>
+    <p>From,</p>
+    <i>
+      {{ user.address.street }}
+      {{ user.address.city }}-{{ user.address.postal_code }}
+      {{ user.address.country }}
+    </i>
+  </address>
+
+{% endblock %}

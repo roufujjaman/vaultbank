@@ -1,0 +1,118 @@
+.strong {
+  color: blue;
+  font-size: 1.5rem;
+}
+@keyframes kf-error {
+  0%{
+    transform: scale(.5);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+.error {
+  min-width: inherit;
+  max-width: max-content;
+  padding: 0.25rem;
+  color: rgb(74, 74, 255);
+  background-color: rgb(230, 219, 255);
+  font-size: .75rem;
+  animation: kf-error 200ms forwards;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  /* margin: 1rem; */
+}
+
+input, select {
+  padding: .5rem;
+  margin: .5rem 0;
+}
+
+button {
+  background-color: blue;
+  color: white;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border: none;
+}
+
+
+
+table {
+  width: 100%;
+}
+
+td {
+  border-bottom: 1px solid grey;
+  min-height: 2rem;
+}
+
+th {
+  padding: 0.25rem;
+}
+
+.txn-heading {
+  background-color: blue;
+  color: white;
+  position:sticky;
+  top: 0;
+  text-align: left;
+}
+
+
+
+.txn-type {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+}
+
+.txn {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: .25rem;
+}
+.deposit {
+  background-color: blue;
+}
+.withdraw {
+  background-color: rgb(0, 233, 0);
+}
+.other {
+  background-color: rgb(167, 167, 255);
+}
+
+
+@keyframes toast {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+}
+
+.toast-wrapper {
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+.toast {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgb(169, 255, 157);
+  text-align: center;
+  padding: 1rem;
+  animation: toast 200ms forwards;
+}

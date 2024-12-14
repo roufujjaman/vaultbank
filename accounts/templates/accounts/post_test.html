@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block body %}
+<div style="width: 50%; margin: auto; padding: 25px">
+  <form action="" method="POST">
+    {% csrf_token %}
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name">
+
+    <label for="designation">Designation</label>
+    <input type="text" id="designation" name="designation">
+
+    <label for="languages">Choose languages you know:</label><br>
+    <div>
+
+        <input type="checkbox" name="languages" value="Python"> Python<br>
+        <input type="checkbox" name="languages" value="JavaScript"> JavaScript<br>
+        <input type="checkbox" name="languages" value="Java"> Java<br>
+        <input type="checkbox" name="languages" value="C++"> C++<br>
+    </div>
+
+
+    <button>Submit</button>
+  </form>
+</div>
+{% endblock %}

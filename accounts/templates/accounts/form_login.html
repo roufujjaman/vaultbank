@@ -1,0 +1,26 @@
+{% extends 'form.html' %}
+
+{% block title %}Login{% endblock %}
+{% block subtitle %}Login to your account{% endblock %}
+
+{% block method%}POST{% endblock %}
+
+{% block form %}
+                {% if LoginForm.non_field_errors %}
+                <div class="error">
+                    {% for error in LoginForm.non_field_errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                {% endif %}
+                {% for field in LoginForm %}
+                {{ field.label_tag }}
+                
+                {{ field }}
+                
+                {% for err in field.errors %}
+                <p class="error">{{ err }}</p>
+                {% endfor %}
+                {% endfor %}
+{% endblock %}

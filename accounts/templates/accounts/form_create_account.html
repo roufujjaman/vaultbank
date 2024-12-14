@@ -1,0 +1,45 @@
+{% extends "form.html" %}
+
+{% block title %}Create Account{% endblock %}
+
+{% block subtitle %}Account creation form{% endblock %}
+
+{% block method %}POST{% endblock %} 
+
+{% block form %}
+            <!-- form 1 - UserForm -->
+            {% for field in UserForm %}
+                {{ field.label_tag }}
+            
+                
+                {{ field }}
+
+                {% for err in field.errors %}
+                <p class="message error">{{ err }}</p>
+                {% endfor %}
+            {% endfor %}
+            <br><hr><br> 
+
+            <!-- form 2 - AccountsForm -->
+            {% for field in AccountForm %}
+                {{ field.label_tag }}
+                
+                {{ field }}
+
+                {% for err in field.errors %}
+                <p class="message error">{{ err }}</p>
+                {% endfor %}
+            {% endfor %}
+            <br><hr><br>
+
+            <!-- form 3 - AddressForm -->
+            {% for field in AddressForm %}
+                {{ field.label_tag }}
+                
+                {{ field }}
+
+                {% for err in field.errors %}
+                <p class="message error">{{ err }}</p>
+                {% endfor %}
+            {% endfor %}
+{% endblock %}

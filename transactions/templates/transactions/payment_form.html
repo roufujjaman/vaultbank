@@ -1,0 +1,15 @@
+{% extends 'form.html' %}
+
+{% block title %}Transaction{% endblock %}
+{% block subtitle%}{{ subtitle }}{% endblock %}
+{% block method %}POST{% endblock %}
+
+{% block form %}
+    {% csrf_token %}
+    <select name="id">
+        <option value="" selected disabled hidden>Select your loan to pay back</option>
+        {% for l in loanlist %}
+            <option value="{{ l.id }}">৳{{ l.amount }} - {{ l.created_at | date:"Y F d, fA" }}</option>
+        {% endfor %}
+    </select>
+{% endblock %}

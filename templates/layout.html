@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vaultBank</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        :root {
+            --grey: rgb(223, 223, 223);
+        }
+
+        * {
+            font-family: "JetBrains Mono", monospace;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+
+        a:visited {
+            color: inherit;
+        }
+
+        .container {
+            /* background-color: antiquewhite; */
+            width: 60vw;
+            margin: 2rem auto;
+        }
+
+        .nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+
+        .title {
+            padding-bottom: .5rem;
+        }
+
+        .content {
+            /* height: 60vh; */
+
+            /* overflow-y: scroll; */
+            /* scrollbar-width: thin; */
+            scrollbar-color: blue transparent;
+            /* overflow-x: hidden; */
+            /* overflow-x: none; */
+        }
+
+        a:hover {
+            color: blue;
+        }
+
+        .menu {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .inner{       
+            position: absolute;
+            display: none;
+        }
+
+        .inner > a {
+            display: block;
+            background-color: white;
+            box-shadow: 1px 1px 2px rgb(202, 202, 202);
+            padding: .5rem;
+        }
+        .outer:hover .inner {
+            display: block;
+        }
+
+        .menu > *a{
+            background-color: aqua;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+                <img src="{% static 'logo.png' %}" style="max-height: 2rem;" alt="">
+                <div class="menu">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'accounts:home' %}">Account</a>
+                    <div class="outer">
+                        <a href="#" class="trigger">Services</a>
+                        <div class="inner">
+                            <a href="{% url 'transactions:withdraw' %}">Withdraw</a>
+                            <a href="{% url 'transactions:deposit' %}">Deposit</a>
+                            <a href="{% url 'transactions:loan' %}">Loan</a>
+                            <a href="#">Payment</a>
+                            <a href="{% url 'transactions:transfer' %}">Transfer</a>
+                        </div>
+                    </div>
+                    <a href="{% url 'accounts:logout' %}">Logout</a>
+                    {% else %}
+
+                        <a href="{% url 'accounts:create' %}">Create Account</a>
+                        <a href="{% url 'accounts:login' %}">Login</a>
+                    {% endif %}
+                </div>
+        </nav>
+        <div>
+            <h3 class="strong">{% block title %}{% endblock %}</h3>
+            <p>{% block subtitle %}{% endblock %}</p>
+            <hr style="border: 1px solid blue; margin: 1rem 0rem;">
+        </div>
+
+
+        {% if messages %}
+        <div class="toast-wrapper">
+                {% for m in messages %}
+                <div class="toast">
+                    <p>{{ m }}</p>
+                </div>
+                {% endfor %}
+        </div>
+        {% endif %}
+        
+        <script>
+            toast = document.querySelector(".toast-wrapper")
+
+            console.log(toast);
+            toast.addEventListener("animationend", () => {
+                setTimeout(() => {
+                    toast.style.display = "none";
+                }, 3000)
+            })
+        </script>
+
+
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

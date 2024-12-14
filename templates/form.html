@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+    {{ block.super }}
+    <form method="{% block method %}{% endblock %}" novalidate class="form-container">
+        {% csrf_token %}
+        {% block form %}
+            <!-- form goes here -->
+        {% endblock %}
+    <button>Submit</button>
+    </form>
+{% endblock %}
