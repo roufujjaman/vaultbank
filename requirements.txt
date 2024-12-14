@@ -3,6 +3,5 @@ asgiref
 Django
 django-crispy-forms
 django-environ
-psycopg2
 sqlparse
 tzdata
