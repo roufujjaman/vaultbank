@@ -93,10 +93,13 @@ WSGI_APPLICATION = 'vaultbank.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# Replace the SQLite DATABASES configuration with PostgreSQL:
 DATABASES = {
-    'default': dj_database_url.config(env("DB_ONRENDER"))
-} 
-
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://any_fts8_user:NzUVeerhvtHlNy7znnFizWMGuTjGH578@dpg-ctfh6r56l47c73b8ovp0-a.oregon-postgres.render.com/any_fts8',
+    )
+}
 
 
 # Password validation
