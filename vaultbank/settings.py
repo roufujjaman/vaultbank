@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ["SECRET_KEY"]
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'vaultbank.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default=env("DATABASE_URL"),
+        default="postgresql://any_fts8_user:NzUVeerhvtHlNy7znnFizWMGuTjGH578@dpg-ctfh6r56l47c73b8ovp0-a.oregon-postgres.render.com/any_fts8",
     )
 }
 
