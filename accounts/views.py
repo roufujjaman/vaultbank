@@ -93,7 +93,7 @@ def create_account(request):
 
             messages.success(request, "Account Created Successfully")
 
-            return redirect("account")
+            return redirect("accounts:home")
 
     return render(request, "accounts/form_create_account.html", {
         "UserForm": user_form,
@@ -102,17 +102,17 @@ def create_account(request):
     })
 
 
-def edit_account(request, id):
+# def edit_account(request, id):
 
-    # user_form = UserForm(instance=User.objects.get(pk=id))
-    Account_form = AccountForm(instance=Account.objects.get(pk=id))
-    # address_form = AddressForm(instance=Address.objects.get(pk=id))
+#     # user_form = UserForm(instance=User.objects.get(pk=id))
+#     Account_form = AccountForm(instance=Account.objects.get(pk=id))
+#     # address_form = AddressForm(instance=Address.objects.get(pk=id))
     
-    return render(request, "accounts/form_create_account.html", {
-        # "UserForm": user_form,
-        "AccountForm": Account_form,
-        # "AddressForm": address_form
-    })
+#     return render(request, "accounts/form_create_account.html", {
+#         # "UserForm": user_form,
+#         "AccountForm": Account_form,
+#         # "AddressForm": address_form
+#     })
 
 
 
@@ -128,6 +128,7 @@ def login_account(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                messages.success(request, "Logged In Successfully")
                 return redirect("accounts:home")
             
 
@@ -135,6 +136,7 @@ def login_account(request):
     return render(request, "accounts/form_login.html", {
         "LoginForm": user_form
     })
+
 
 def logout_account(reqeust):
     logout(request=reqeust)
