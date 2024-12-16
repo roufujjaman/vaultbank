@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'vaultbank.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://any_fts8_user:NzUVeerhvtHlNy7znnFizWMGuTjGH578@dpg-ctfh6r56l47c73b8ovp0-a.oregon-postgres.render.com/any_fts8',
+        default=env("DATABASE_URL"),
     )
 }
 
